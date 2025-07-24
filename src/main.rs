@@ -14,10 +14,10 @@ use std::collections::LinkedList;
 use std::iter::FromIterator;
 
 // Глобальные константы
-const CELL_SIZE: i32 = 20;                                      // размер кубика 20 пикселей
-const GRID_SIZE: i32 = 20;                                      // Размер гряды/столбца 20 = CELL_SIZE (400 пикселей)
+const CELL_SIZE: i32 = 20;                                      // размер ячейки 20 пикселей
+const GRID_SIZE: i32 = 20;                                      // Размер гряды/столбца 20 ячеек (400 пикселей)
 const BOARD_SIZE: u32 = (GRID_SIZE * GRID_SIZE) as u32;         // Размер игрового поля 400 (х 400) пикселей
-const INITIAL_SNAKE_BODY: &[(i32, i32)] = &[(0, 0), (0, 1)];    // Место на доске где появляется новая змейка (две клетки по горизонтали в левом верхнем углу)
+const INITIAL_SNAKE_BODY: &[(i32, i32)] = &[(0, 0), (0, 1)];    // Место на доске где появляется новая змейка (две ячейки по горизонтали в левом верхнем углу)
 
 #[derive(Clone, PartialEq)]
 enum Direction {
@@ -180,7 +180,7 @@ impl Food {
         let mut x = rng.random_range(0..GRID_SIZE);
         let mut y = rng.random_range(0..GRID_SIZE);
 
-        // Проверка на что еда не появится в том месте где расположена змейка
+        // Проверка на что еда не появится в том месте, где расположена змейка.
         while snake_body.contains(&(x, y)) {
             x = rng.random_range(0..GRID_SIZE);
             y = rng.random_range(0..GRID_SIZE);
