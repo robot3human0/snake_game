@@ -13,16 +13,18 @@ use rand::prelude::*;
 use std::collections::LinkedList;
 use std::iter::FromIterator;
 
-// Глобальные константы
-const CELL_SIZE: i32 = 20;                                      // размер ячейки 20 пикселей
-const GRID_SIZE: i32 = 20;                                      // Размер гряды/столбца 20 ячеек (400 пикселей)
-const BOARD_SIZE: u32 = (GRID_SIZE * GRID_SIZE) as u32;         // Размер игрового поля 400 (х 400) пикселей
-const INITIAL_SNAKE_BODY: &[(i32, i32)] = &[(1, 0), (0, 0)];    // Место на доске где появляется новая змейка (две ячейки по горизонтали в левом верхнем углу)
-const FRAMES_PER_SECOND: u64 = 6;                               // Частота перерисовки кадров в секунду (скорость змейки)
+// Global constants
+const CELL_SIZE: i32 = 20;                                      // 20px
+const GRID_SIZE: i32 = 20;                                      // Grid size 20 cells (400px)
+const BOARD_SIZE: u32 = (GRID_SIZE * GRID_SIZE) as u32;         // The size of the playing field is 400 (x 400) pixels
+const INITIAL_SNAKE_BODY: &[(i32, i32)] = &[(1, 0), (0, 0)];    // The place on the playing field where a new snake appears (two cells horizontally in the upper left corner)
+const FRAMES_PER_SECOND: u64 = 6;
+
 #[derive(Clone, PartialEq, Debug)]
 enum Direction {
     Right, Left, Up, Down
 }
+
 pub struct Game {
     gl: GlGraphics,
     snake: Snake,
@@ -33,7 +35,7 @@ impl Game {
     fn render(&mut self, args: &RenderArgs) {
         use graphics;
 
-        const LAVENDER: [f32; 4] = [0.7, 0.75, 1.0, 1.0];   // Здесь можно поиграться с цветом игрового поля
+        const LAVENDER: [f32; 4] = [0.7, 0.75, 1.0, 1.0];   // Here you can play with the color of the playing field
 
         self.gl.draw(args.viewport(), |_c, gl| {
             graphics::clear(LAVENDER, gl);
@@ -85,7 +87,7 @@ impl Snake {
     fn render(&mut self, gl: &mut GlGraphics, args: &RenderArgs) {
         use graphics;
 
-        const GOLD_CRAYOLA: [f32; 4] = [1.0, 0.8, 0.47, 1.0];   // Здесь можно поиграться с цветом змейки
+        const GOLD_CRAYOLA: [f32; 4] = [1.0, 0.8, 0.47, 1.0];   // Here you can play with the color of the snake
 
         let squares: Vec<graphics::types::Rectangle> = self.body
             .iter()
@@ -162,7 +164,7 @@ impl Food {
     fn render(&mut self, gl: &mut GlGraphics, args: &RenderArgs) {
         use graphics;
 
-        const RED: [f32; 4] = [1.0, 0.0, 0.0, 1.0]; // Здесь можно поиграть с цветом еды
+        const RED: [f32; 4] = [1.0, 0.0, 0.0, 1.0]; // Here you can play with the color of the food
 
         let square = graphics::rectangle::square(
             (self.x * CELL_SIZE) as f64,
@@ -260,9 +262,10 @@ mod tests {
 
     #[test]
     fn snake_move_left() {
-        // Для этого теста нужно создать кастомную змейку, потому что оригинальная движется в право
-        // при рождении, соответственно мы не можем повернуть сразу влево.
-        // Поэтому мы в этом тесте создаем змейку, которая движется вниз изначально!
+        // For this test, we need to create a custom snake,
+        // because the original snake starts moving to the right by default,
+        // so we can’t immediately turn left.
+        // Therefore, in this test we create a snake that is initially moving down!
         let mut snake = Snake {
             body: LinkedList::from_iter([(0, 1), (0, 0)]),
             direction: Direction::Down,
