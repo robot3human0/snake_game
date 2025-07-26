@@ -1,14 +1,37 @@
-# Змейка 0.1.0 
+`# 🐍 Snake Game in Rust
 
 !["GAME DEMO"](demo.gif)
 
-## Преамбула
-Решил "потыкать" Rust, нейросеть предложила несколько проектов на выбор среди них была "Змейка". Так и родился этот репозиторий.<br>
-В моем распоряжении есть Mac M4, стационар и лаптоп на Intel под Ubuntu.
-На Маке не собирается, жалуется на либу "cocoa", хотя в проекте она не используется, думаю в зависимостях либы "piston".
+## About
+I decided to try Rust, and the neural network suggested a few project ideas — among them was the classic "Snake" game.  
+This repository is the result of that experiment.
 
-## Описание
-Классическая игра "Змейка", помню ее со времен тетриса (тот что портативная консоль).
-Управление клавишами: ⬅️➡️⬆️⬇️, и клавиша 'Esc' для выхода из игры.<br>
-Если "Змейка" врежется сама в себя, игра начнется заново, если змейка выйдет за пределы одной из сторон поля, тело появится с противоположной стороны. 
+Tested on Ubuntu under X11.  
+If you are using Wayland, run with:
+```bash
+WINIT_UNIX_BACKEND=x11 cargo run
+```
 
+## Description
+Classic "Snake" game that I remember from the old handheld Tetris consoles.
+* Control with the arrow keys ⬅️➡️⬆️⬇️. Press 'Esc' to exit the game.
+* If the snake runs into itself, the game restarts.
+* If the snake goes beyond one side of the field, it reappears on the opposite side.
+
+## ⚙️ Build & Run
+```bash
+cargo run
+```
+
+## ✅ Features
+* Classic gameplay
+* Snake wraps around the screen edges
+* Automatic restart on collision
+* Simple and clean code structure
+
+## 📦 Dependencies
+* piston = "0.36.0"
+* piston2d-graphics = "0.26.0"
+* pistoncore-glutin_window = "0.45.0"
+* piston2d-opengl_graphics = "0.52.0"
+* rand = "0.9.1"
