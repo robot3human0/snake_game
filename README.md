@@ -1,4 +1,4 @@
-`# 🐍 Snake Game in Rust
+# 🐍 Snake Game in Rust
 
 !["GAME DEMO"](demo.gif)
 
